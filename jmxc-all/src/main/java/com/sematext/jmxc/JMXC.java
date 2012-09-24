@@ -1,3 +1,7 @@
+/*
+ *    Copyright (c) Sematext International
+ *    All Rights Reserved
+ */
 package com.sematext.jmxc;
 
 import sun.management.ConnectorAddressLink;
@@ -17,10 +21,10 @@ import javax.management.remote.JMXServiceURL;
 /**
  * 
  * Surprisingly, JConsole is not really a 'console' utility. 
- * So, JMXC(onsole) is very simple 'console' utility to dump jmx data. 
- * Can connect to to JVM simple by pid (if run on the same machine), or via by URL ("jmx:rmi").
+ * So, JMXC(onsole) is a very simple 'console' utility for dumping data out of JMX.
+ * It connects to the target JVM by PIDif run on the same machine or via URL using the "jmx:rmi" schema.
  * 
- * Currently not support some complex JMX datatypes.
+ * Some complex JMX datatypes are currently not supported.  Pull requests welcome!
  * 
  * @author sematext, http://www.sematext.com/
  */
@@ -33,7 +37,7 @@ public class JMXC {
    */
   public static void main(String[] args) throws Exception {
     if (args.length == 0) {
-      error("Specify the pid or connection URL as first param, jmx query as second (optional)");
+      error("Specify the PID or connection URL as first param, JMX query as second (optional)");
       return;
     }
     String connectTo = args[0];
@@ -46,17 +50,17 @@ public class JMXC {
     Integer pid = pid(connectTo);
     String url = pid != null ? computeJMXServiceURL(pid) : connectTo;
 
-    out("Connect via URL -> " + url);
+    out("Connect via URL: " + url);
     JMXConnector connector;
     try {
       connector = JMXConnectorFactory.connect(new JMXServiceURL(url));
     } catch (NullPointerException e) {
-      return error("Can't connect to pid -> " + pid
-          + " ,try to run target JVM with 'com.sun.management.jmxremote' param");
+      return error("Can't connect to PID: " + pid
+          + ", try to run target JVM with '-Dcom.sun.management.jmxremote' param");
     }
-    
+
     if (connector == null) {
-      return error("Sorry, can't connect to -> " + url);
+      return error("Sorry, can't connect to: " + url);
     }
     MBeanServerConnection connection = connector.getMBeanServerConnection();
 
