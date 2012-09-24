@@ -1,6 +1,6 @@
 h1. JMXC
 
-h2. A JMX(C)onsole tool for dumping JMX data
+h2. A JMX Console tool for dumping JMX data
 
 h3. "http://sematext.com/open-source/index.html":http://sematext.com/open-source/index.html
 
