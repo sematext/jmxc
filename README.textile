@@ -1,4 +1,8 @@
-JMXC(onsole) is a console utility to dump JMX data. 
+h1. JMXC
+
+h2. A JMX(C)onsole tool for dumping JMX data
+
+h3. "http://sematext.com/open-source/index.html":http://sematext.com/open-source/index.html
 
 h3. Building from Source
 
@@ -8,7 +12,7 @@ In order to create a distribution, simply run the @mvn jar:jar@ command in the c
 
 The distribution will be created under @target/@.
 
-h1. License
+h3. License
 
 <pre>
 This software is licensed under the Apache 2 license, quoted below.
